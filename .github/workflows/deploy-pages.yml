@@ -18,7 +18,6 @@ env:
     FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     GSHEET_ID: ${{ vars.GSHEET_ID }}
     GSHEET_TAB: ${{ vars.GSHEET_TAB }}
-    SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}
 
 jobs:
   build:
@@ -43,6 +42,8 @@ jobs:
     #       echo '${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}' > service_account.json
 
       - name: Build files
+        env:
+            SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}
         run: python build.py
 
       - name: Minify files
