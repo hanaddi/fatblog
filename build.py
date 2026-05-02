@@ -20,7 +20,7 @@ dist.mkdir(parents=True, exist_ok=True)
 
 
 # Load credentials and authorize the client
-gc = gspread.service_account_from_dict(json.load(SERVICE_ACCOUNT))
+gc = gspread.service_account_from_dict(json.loads(SERVICE_ACCOUNT))
 
 # Open the sheet by ID
 sh = gc.open_by_key(GSHEET_ID)
