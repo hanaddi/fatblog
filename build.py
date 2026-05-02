@@ -2,15 +2,16 @@ import shutil
 from pathlib import Path
 import gspread
 import os
+import json
 
 # Vars
 GSHEET_ID = os.environ['GSHEET_ID']
 GSHEET_TAB = os.environ['GSHEET_TAB']
 SERVICE_ACCOUNT = os.environ['SERVICE_ACCOUNT']
 
-# create service_account.json
-with open("service_account.json", "w", encoding="utf-8") as f:
-    f.write(SERVICE_ACCOUNT)
+# # create service_account.json
+# with open("service_account.json", "w", encoding="utf-8") as f:
+#     f.write(SERVICE_ACCOUNT)
 
 # Prepare output folder
 dist = Path("dist")
@@ -19,7 +20,7 @@ dist.mkdir(parents=True, exist_ok=True)
 
 
 # Load credentials and authorize the client
-gc = gspread.service_account(filename='service_account.json')
+gc = gspread.service_account_from_dict(json.load(SERVICE_ACCOUNT))
 
 # Open the sheet by ID
 sh = gc.open_by_key(GSHEET_ID)
