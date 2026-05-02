@@ -18,6 +18,7 @@ env:
     FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
     GSHEET_ID: ${{ vars.GSHEET_ID }}
     GSHEET_TAB: ${{ vars.GSHEET_TAB }}
+    SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}
 
 jobs:
   build:
@@ -36,9 +37,9 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Create Service Account Key File
-        run: |
-          echo '${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}' > service_account.json
+    #   - name: Create Service Account Key File
+    #     run: |
+    #       echo '${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}' > service_account.json
 
       - name: Build files
         run: python build.py

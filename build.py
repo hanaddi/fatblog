@@ -6,6 +6,11 @@ import os
 # Vars
 GSHEET_ID = os.environ['GSHEET_ID']
 GSHEET_TAB = os.environ['GSHEET_TAB']
+SERVICE_ACCOUNT = os.environ['SERVICE_ACCOUNT']
+
+# create service_account.json
+with open("service_account.json", "w", encoding="utf-8") as f:
+    f.write(SERVICE_ACCOUNT)
 
 # Prepare output folder
 dist = Path("dist")
