@@ -1,0 +1,70 @@
+name: Build and deploy pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+    GSHEET_ID: ${{ vars.GSHEET_ID }}
+    GSHEET_TAB: ${{ vars.GSHEET_TAB }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Create Service Account Key File
+        run: |
+          echo '${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}' > service_account.json
+
+      - name: Build files
+        run: python build.py
+
+      - name: Minify files
+        uses: devatherock/minify-js@v3.1.0
+        with:
+          directory: 'dist'
+          add_suffix: false
+          inclusions: '.*\.html|.*\.js|.*\.css|.*\.xml'
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
