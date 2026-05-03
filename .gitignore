@@ -2,3 +2,5 @@ dist
 venv
 service_account.json
 notes.md
+*.ps1
+*.bat
