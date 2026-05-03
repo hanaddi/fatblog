@@ -18,6 +18,12 @@ dist = Path("dist")
 shutil.rmtree(dist, ignore_errors=True)
 dist.mkdir(parents=True, exist_ok=True)
 
+# Copy css, img, js
+for d in ["css", "img", "js"]:
+    src_dir = Path("src") / d
+    dst_dir = dist / d
+    if src_dir.exists():
+        shutil.copytree(src_dir, dst_dir, dirs_exist_ok=True)
 
 # Load credentials and authorize the client
 gc = gspread.service_account_from_dict(json.loads(SERVICE_ACCOUNT))

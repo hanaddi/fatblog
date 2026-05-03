@@ -1,0 +1,60 @@
+/* Container Layout */
+body {
+  /* max-width: 800px; */
+  /* margin: 2rem auto; */
+  /* padding: 0 1.5rem; */
+  line-height: 1.5;
+}
+
+/* Headers & Paragraphs */
+h1, h2, h3, p {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+p {
+  text-align: justify;
+}
+
+/* Lists */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+li {
+  margin-bottom: 0.25rem;
+}
+
+/* Nested lists */
+li > ul, li > ol {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+th, td {
+  padding: 0.5rem;
+  border: 1px solid; /* Uses default text color */
+  text-align: left;
+}
+
+/* Blockquotes */
+blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 4px solid;
+}
+
+/* Code Blocks */
+pre {
+  padding: 1rem;
+  border: 1px solid;
+  overflow-x: auto;
+}
