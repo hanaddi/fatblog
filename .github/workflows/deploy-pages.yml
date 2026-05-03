@@ -51,7 +51,11 @@ jobs:
         with:
           directory: 'dist'
           add_suffix: false
-          ext_includes: '.html,.js,.css,.xml'
+          inclusions: |-
+            *.html
+            *.js
+            *.css
+            *.xml
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
