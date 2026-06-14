@@ -34,7 +34,8 @@ body {
 }
 
 h1, h2, h3 {
-  color: var(--text-color);
+  /* color: var(--text-color); */
+  color: inherit;
   border-bottom-color: var(--border-color);
 }
 
