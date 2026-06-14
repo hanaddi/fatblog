@@ -48,7 +48,7 @@ for row in data:
         os.makedirs(folder, exist_ok=True)
 
     # Create and write the file
-    with open(path, "w") as file:
+    with open(path, "w", encoding="utf-8") as file:
         file.write(content)
         print(f"Successfully created: {path}")
 
