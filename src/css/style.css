@@ -156,6 +156,7 @@ nav a:hover {
 .main article, .main article > p {
     letter-spacing: -0.01rem;
     text-align: left;
+    margin-bottom: 1.5rem;
 }
 
 /* Footer */
