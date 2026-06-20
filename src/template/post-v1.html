@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/png" href="/img/fathan.png">
+    <title>
+        <<blog_name>>
+    </title>
+    <meta name="description" content="<<blog_description>>">
+    <meta name="keywords" content="blog">
+    <meta name="og:type" content="article">
+    <meta name="og:title" content="<<blog_name>>">
+    <meta name="og:description" content="<<blog_description>>">
+    <meta name="og:url" content="<<blog_url>>">
+    <meta name="og:image" content="<<blog_img_default>>">
+    <meta name="twitter:description" content="<<blog_description>>">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="<<blog_name>>">
+    <meta name="twitter:image" content="<<blog_img_default>>">
+    <meta name="twitter:image:alt" content="<<blog_name>>">
+    <link rel="canonical" href="<<blog_url>>">
+
+
+
+    <link rel="stylesheet" href="/css/layout.css?v=<<app_version>>" />
+    <link rel="stylesheet" href="/css/colors.css?v=<<app_version>>" />
+    <link rel="stylesheet" href="/css/style.css?v=<<app_version>>" />
+
+    <!-- <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)" /> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" media="(prefers-color-scheme: dark)" /> -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script> -->
+
+    <style><<adaptive_css_theme>></style>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <header class="site-header">
+            <h1 class="site-title">FatBlog</h1>
+            <!-- <p class="site-description">
+                <<blog_description>>
+            </p> -->
+        </header>
+
+        <aside>
+            <h3>
+                <<person_name>>
+            </h3>
+            <ul>
+                <li><a target="_blank" href="https://www.linkedin.com/in/fat-han-nuraddin/">LinkedIn</a></li>
+                <li><a target="_blank" href="https://github.com/hanaddi">Github</a></li>
+                <li><a target="_blank" href="https://gitlab.com/hanaddi">Gitlab</a></li>
+            </ul>
+        </aside>
+
+
+        <main class="main">
+            <header class="post-title">
+                <h1><<post_title>></h1>
+                <div class="post-meta"> <time datetime="<<published_timestamp>>"><<published_formatted>></time> </div>
+            </header>
+            <br />
+            <article><<post_content>></article>
+        </main>
+
+        <footer class="site-footer">
+            <div>
+                <!-- © 2026 Minimal Blog • Built with plain HTML and CSS. -->
+            </div>
+        </footer>
+
+    </div>
+</body>
+
+</html>

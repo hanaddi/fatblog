@@ -5,6 +5,7 @@ import os
 import json
 import markdown
 import time
+import datetime
 from pygments.formatters import HtmlFormatter
 
 # Vars
@@ -12,6 +13,7 @@ GSHEET_ID = os.environ['GSHEET_ID']
 GSHEET_TAB = os.environ['GSHEET_TAB']
 SERVICE_ACCOUNT = os.environ['SERVICE_ACCOUNT']
 INDEX_PATH = Path("src/template/index-v1.html")
+POST_PATH = Path("src/template/post-v1.html")
 
 # # create service_account.json
 # with open("service_account.json", "w", encoding="utf-8") as f:
@@ -50,6 +52,9 @@ blog_name = "Fat Han Nuraddin"
 blog_url = "https://fathannuraddin.satu.my.id"
 blog_img_default = f"{blog_url}/img/fathan.png"
 
+template_post = ""
+with open(POST_PATH, "r", encoding="utf-8") as f:
+    template_post = f.read()
 for row in data:
     path = dist / row['path']
     post_list.append(row.get('home', ''))
@@ -88,23 +93,46 @@ for row in data:
     }}
     """
 
-    generated_html_page = f"""
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Rendered Markdown</title>
-        <style>
-            body {{ font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }}
-            /* Inject the Pygments Colors here */
-            {adaptive_css_theme}
-        </style>
-    </head>
-    <body>
-        {generated_html}
-    </body>
-    </html>
-    """
+    # generated_html_page = f"""
+    # <!DOCTYPE html>
+    # <html>
+    # <head>
+    #     <meta charset="utf-8">
+    #     <title>Rendered Markdown</title>
+    #     <style>
+    #         body {{ font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }}
+    #         /* Inject the Pygments Colors here */
+    #         {adaptive_css_theme}
+    #     </style>
+    # </head>
+    # <body>
+    #     {generated_html}
+    # </body>
+    # </html>
+    # """
+
+    description = row.get('contentraw', '')[:200] + "..."
+    post_title = row.get('title', '')
+    title = post_title + " | Fat Han Nuraddin"
+    url = blog_url + "/" + row.get('path', '')
+    img = row.get('og_image', blog_img_default)
+
+    published_timestamp = row.get('created_at', int(time.time()) * 1000)
+    published_obj = datetime.datetime.fromtimestamp(int(published_timestamp / 1000))
+    published_formatted = published_obj.strftime("%B %d, %Y")
+
+    generated_html_page = template_post
+    generated_html_page = generated_html_page.replace("<<app_version>>", str(app_version))
+    generated_html_page = generated_html_page.replace("<<blog_description>>", description)
+    generated_html_page = generated_html_page.replace("<<blog_name>>", title)
+    generated_html_page = generated_html_page.replace("<<person_name>>", blog_name)
+    generated_html_page = generated_html_page.replace("<<blog_url>>", url)
+    generated_html_page = generated_html_page.replace("<<blog_img_default>>", img)
+    generated_html_page = generated_html_page.replace("<<post_title>>", post_title)
+    generated_html_page = generated_html_page.replace("<<post_content>>", generated_html)
+    generated_html_page = generated_html_page.replace("<<published_timestamp>>", str(published_timestamp))
+    generated_html_page = generated_html_page.replace("<<published_formatted>>", published_formatted)
+    generated_html_page = generated_html_page.replace("<<adaptive_css_theme>>", adaptive_css_theme)
 
     # Create the folder if it doesn't exist
     folder = os.path.dirname(path)
