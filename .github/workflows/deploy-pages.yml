@@ -44,7 +44,7 @@ jobs:
       - name: Build files
         env:
             SERVICE_ACCOUNT: ${{ secrets.GCP_SERVICE_ACCOUNT_FILE }}
-        run: python build.py
+        run: python generator.py
 
       - name: Minify files
         uses: devatherock/minify-js@v3.1.0

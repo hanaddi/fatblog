@@ -138,6 +138,7 @@ nav a:hover {
     margin: 0 0 0.5rem 0;
     display: -webkit-box;
     -webkit-line-clamp: 5;
+    text-align: left;
     /* Show 3 lines then ellipsis */
     -webkit-box-orient: vertical;
     overflow: hidden;
