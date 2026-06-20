@@ -112,6 +112,7 @@ for row in data:
     # """
 
     description = row.get('contentraw', '')[:200] + "..."
+    description = " ".join(description.split())
     post_title = row.get('title', '')
     title = post_title + " | Fat Han Nuraddin"
     url = blog_url + "/" + row.get('path', '')
