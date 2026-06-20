@@ -15,7 +15,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Mode */
-    --bg-color: #1a1a1a;
+    --bg-color: #1a2022;
     --text-color: #eeeeee;
     --border-color: #444444;
     --accent-color: #58a6ff;
