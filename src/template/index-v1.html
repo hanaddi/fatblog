@@ -43,7 +43,8 @@
     <div class="container">
 
         <header class="site-header">
-            <h1 class="site-title">FatBlog</h1>
+            <h1 class="site-title"><a id="a-home" href="/">FatBlog</a></h1>
+            <script>if (location.pathname === "/"){document.getElementById("a-home").onclick = ev => ev.preventDefault()}</script>
             <p class="site-description">
                 <<blog_description>>
             </p>

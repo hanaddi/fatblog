@@ -212,9 +212,22 @@ content_index = content_index.replace("<<app_version>>", str(app_version))
 content_index = content_index.replace("<<post_list>>", " ".join(post_list))
 content_index = content_index.replace("<<blog_description>>", blog_description)
 content_index = content_index.replace("<<blog_name>>", blog_name)
-content_index = content_index.replace("<<blog_url>>", blog_url)
 content_index = content_index.replace("<<blog_img_default>>", blog_img_default)
 
 with open(dist / "index.html", "w", encoding="utf-8") as file:
-    file.write(content_index)
+    # TODO: Prettify the landing page
+    content_index_landing = content_index.replace("<<blog_url>>", blog_url)
+    file.write(content_index_landing)
     print(f"Successfully created index")
+
+# Index for posts
+index_files = ["posts/index.html", "blog/index.html"]
+for index_path in index_files:
+    index_posts = dist / index_path
+    folder = os.path.dirname(index_posts)
+    if folder:
+        os.makedirs(folder, exist_ok=True)
+    with open(index_posts, "w", encoding="utf-8") as file:
+        content_index_posts = content_index.replace("<<blog_url>>", blog_url + "/blog")
+        file.write(content_index_posts)
+        print(f"Successfully created {str(index_posts)}")
