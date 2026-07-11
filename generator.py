@@ -14,7 +14,6 @@ GSHEET_TAB = os.environ['GSHEET_TAB']
 SERVICE_ACCOUNT = os.environ['SERVICE_ACCOUNT']
 INDEX_PATH = Path("src/template/index-v1.html")
 POST_PATH = Path("src/template/post-v1.html")
-POST_PATH = Path("src/template/post-test.html")
 
 # # create service_account.json
 # with open("service_account.json", "w", encoding="utf-8") as f:
@@ -64,11 +63,14 @@ for row in data:
     contentmd = row.get('contentmd', '')
     generated_html = markdown.markdown(
         contentmd, 
-        extensions=['fenced_code', 'codehilite', 'tables'],
+        extensions=['fenced_code', 'pymdownx.arithmatex', 'codehilite', 'tables'],
         extension_configs={
             'codehilite': {
-                # 'linenums': True,  # Force row numbers on all blocks
+                'linenums': True,  # Force row numbers on all blocks
                 'guess_lang': False,    # Disables guessing if you forget to label a code block
+            },
+            'pymdownx.arithmatex': {
+                'generic': True,
             }
         }
     )
@@ -125,6 +127,7 @@ for row in data:
 
     .codehilite td.linenos, .codehilite td.code {{
         border: none;
+        background-color: var(--mute-bg);
     }}
 
     .codehilite td.linenos > .linenodiv {{
@@ -133,12 +136,21 @@ for row in data:
 
     .codehilite td.linenos > .linenodiv > pre, .codehilite td.code > div > pre {{
         margin: 0;
+        padding: 5px;
+        border: none;
+    }}
+
+    .codehilite td.linenos > .linenodiv > pre .normal {{
+        background-color: transparent;
+        border-right: solid 1px;
+        padding-right: 10px;
     }}
 
     /* Force the actual code column to fill up the remaining space */
     .codehilite td.code {{
         width: auto !important;
-        padding-left: 15px !important;
+        padding-left: 0px !important;
+        background-color: var(--mute-bg);
     }}
 
     /* Ensure Pygments' internal table structural element behavior doesn't stretch */
@@ -150,6 +162,7 @@ for row in data:
     }}
 
     """
+
 
     # generated_html_page = f"""
     # <!DOCTYPE html>
