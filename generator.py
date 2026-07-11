@@ -14,6 +14,7 @@ GSHEET_TAB = os.environ['GSHEET_TAB']
 SERVICE_ACCOUNT = os.environ['SERVICE_ACCOUNT']
 INDEX_PATH = Path("src/template/index-v1.html")
 POST_PATH = Path("src/template/post-v1.html")
+POST_PATH = Path("src/template/post-test.html")
 
 # # create service_account.json
 # with open("service_account.json", "w", encoding="utf-8") as f:
@@ -63,14 +64,30 @@ for row in data:
     contentmd = row.get('contentmd', '')
     generated_html = markdown.markdown(
         contentmd, 
-        extensions=['fenced_code', 'codehilite'],
+        extensions=['fenced_code', 'codehilite', 'tables'],
         extension_configs={
             'codehilite': {
-                'linenums': True,  # Force row numbers on all blocks
+                # 'linenums': True,  # Force row numbers on all blocks
                 'guess_lang': False,    # Disables guessing if you forget to label a code block
             }
         }
     )
+
+    # generated_html = markdown.markdown(
+    #     contentmd, 
+    #     extensions=[
+    #         'tables', 
+    #         'pymdownx.superfences',  # Replaces 'fenced_code' 
+    #         'pymdownx.highlight'     # Replaces 'codehilite'
+    #     ],
+    #     extension_configs={
+    #         'pymdownx.highlight': {
+    #             # 'linenums': True,      # Force row numbers on all blocks
+    #             'guess_lang': False,   # Keeps automatic guessing disabled
+    #             'css_class': 'codehilite'  # Keeps original class name intact
+    #         }
+    #     }
+    # )
 
     # --- Light Theme Setup ---
     # Choose a clean light theme (e.g., 'default', 'github', 'tango', or 'vs')
@@ -91,6 +108,47 @@ for row in data:
     @media (prefers-color-scheme: dark) {{
     {dark_css}
     }}
+
+    /* Tighten the line numbers container */
+    .codehilite td.linenos {{
+        width: 1% !important;        /* Collapses column to minimum text width */
+        min-width: 35px !important;  /* Sets a baseline safety boundary */
+        padding: 0px !important;
+        text-align: right !important;
+        user-select: none;           /* Prevents line numbers from being accidentally selected */
+        border-right: 1px solid #e0e0e0; /* Optional: adds a nice vertical divider line */
+    }}
+
+    .codehilite tr {{
+        margin: 0;
+    }}
+
+    .codehilite td.linenos, .codehilite td.code {{
+        border: none;
+    }}
+
+    .codehilite td.linenos > .linenodiv {{
+        margin: 0;
+    }}
+
+    .codehilite td.linenos > .linenodiv > pre, .codehilite td.code > div > pre {{
+        margin: 0;
+    }}
+
+    /* Force the actual code column to fill up the remaining space */
+    .codehilite td.code {{
+        width: auto !important;
+        padding-left: 15px !important;
+    }}
+
+    /* Ensure Pygments' internal table structural element behavior doesn't stretch */
+    .codehilite table {{
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }}
+
     """
 
     # generated_html_page = f"""
