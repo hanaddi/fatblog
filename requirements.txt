@@ -1,3 +1,4 @@
 gspread==6.2.1
 Markdown==3.10.2
 Pygments==2.20.0
+pymdown-extensions==11.0

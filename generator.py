@@ -15,9 +15,6 @@ SERVICE_ACCOUNT = os.environ['SERVICE_ACCOUNT']
 INDEX_PATH = Path("src/template/index-v1.html")
 POST_PATH = Path("src/template/post-v1.html")
 
-# # create service_account.json
-# with open("service_account.json", "w", encoding="utf-8") as f:
-#     f.write(SERVICE_ACCOUNT)
 
 # Prepare output folder
 dist = Path("dist")
@@ -39,7 +36,6 @@ sh = gc.open_by_key(GSHEET_ID)
 
 # Select the worksheet by its tab name
 worksheet = sh.worksheet(GSHEET_TAB)
-# worksheet = sh.worksheet("Sheet4")
 
 # Get all records as a list of dictionaries
 data = worksheet.get_all_records()
@@ -58,58 +54,121 @@ with open(POST_PATH, "r", encoding="utf-8") as f:
 for row in data:
     path = dist / row['path']
     post_list.append(row.get('home', ''))
-    # content = row.get('content', '')
 
     contentmd = row.get('contentmd', '')
     generated_html = markdown.markdown(
         contentmd, 
-        extensions=['fenced_code', 'codehilite'],
+        extensions=['fenced_code', 'pymdownx.arithmatex', 'codehilite', 'tables'],
         extension_configs={
             'codehilite': {
                 'linenums': True,  # Force row numbers on all blocks
                 'guess_lang': False,    # Disables guessing if you forget to label a code block
+            },
+            'pymdownx.arithmatex': {
+                'generic': True,
             }
         }
     )
 
+    # generated_html = markdown.markdown(
+    #     contentmd, 
+    #     extensions=[
+    #         'tables', 
+    #         'pymdownx.superfences',  # Replaces 'fenced_code' 
+    #         'pymdownx.highlight'     # Replaces 'codehilite'
+    #     ],
+    #     extension_configs={
+    #         'pymdownx.highlight': {
+    #             # 'linenums': True,      # Force row numbers on all blocks
+    #             'guess_lang': False,   # Keeps automatic guessing disabled
+    #             'css_class': 'codehilite'  # Keeps original class name intact
+    #         }
+    #     }
+    # )
+
     # --- Light Theme Setup ---
     # Choose a clean light theme (e.g., 'default', 'github', 'tango', or 'vs')
     light_formatter = HtmlFormatter(style="default")
-    light_css = light_formatter.get_style_defs('.codehilite')
+    light_css = light_formatter.get_style_defs('.light-theme .codehilite')
 
     # --- Dark Theme Setup ---
     # Choose a clean dark theme (e.g., 'monokai', 'github-dark', 'one-dark', or 'dracula')
     dark_formatter = HtmlFormatter(style="github-dark")
-    dark_css = dark_formatter.get_style_defs('.codehilite')
+    dark_css = dark_formatter.get_style_defs('.dark-theme .codehilite')
+
+    # System defaults when the user hasn't explicitly chosen a preference yet
+    system_light_css = light_formatter.get_style_defs('.codehilite')
+    system_dark_css = dark_formatter.get_style_defs('.codehilite')
 
     # --- Combine into a Responsive CSS Block ---
     adaptive_css_theme = f"""
-    /* 1. Default fallback / Light Mode styles */
+    /* Default fallback / Light Mode styles */
     {light_css}
 
-    /* 2. Automatic Dark Mode Override via Browser Settings */
+    /* Automatic Dark Mode Override via Browser Settings */
     @media (prefers-color-scheme: dark) {{
     {dark_css}
     }}
-    """
 
-    # generated_html_page = f"""
-    # <!DOCTYPE html>
-    # <html>
-    # <head>
-    #     <meta charset="utf-8">
-    #     <title>Rendered Markdown</title>
-    #     <style>
-    #         body {{ font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; }}
-    #         /* Inject the Pygments Colors here */
-    #         {adaptive_css_theme}
-    #     </style>
-    # </head>
-    # <body>
-    #     {generated_html}
-    # </body>
-    # </html>
-    # """
+    /* Absolute Manual Overrides (Takes priority over media queries) */
+    {light_css}
+    {dark_css}
+
+    .codehilite {{
+        margin-bottom: 1.5rem;
+    }}
+
+    /* Tighten the line numbers container */
+    .codehilite td.linenos {{
+        width: 1% !important;        /* Collapses column to minimum text width */
+        min-width: 35px !important;  /* Sets a baseline safety boundary */
+        padding: 0px !important;
+        text-align: right !important;
+        user-select: none;           /* Prevents line numbers from being accidentally selected */
+        border-right: 1px solid #e0e0e0; /* Optional: adds a nice vertical divider line */
+    }}
+
+    .codehilite tr {{
+        margin: 0;
+    }}
+
+    .codehilite td.linenos, .codehilite td.code {{
+        border: none;
+        background-color: var(--mute-bg);
+    }}
+
+    .codehilite td.linenos > .linenodiv {{
+        margin: 0;
+    }}
+
+    .codehilite td.linenos > .linenodiv > pre, .codehilite td.code > div > pre {{
+        margin: 0;
+        padding: 5px;
+        border: none;
+    }}
+
+    .codehilite td.linenos > .linenodiv > pre .normal {{
+        background-color: transparent;
+        border-right: solid 1px;
+        padding-right: 10px;
+    }}
+
+    /* Force the actual code column to fill up the remaining space */
+    .codehilite td.code {{
+        width: auto !important;
+        padding-left: 0px !important;
+        background-color: var(--mute-bg);
+    }}
+
+    /* Ensure Pygments' internal table structural element behavior doesn't stretch */
+    .codehilite table {{
+        width: 100% !important;
+        border-collapse: collapse !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }}
+
+    """
 
     description = row.get('contentraw', '')[:200] + "..."
     description = " ".join(description.split())

@@ -21,7 +21,7 @@
     <meta name="twitter:image" content="<<blog_img_default>>">
     <meta name="twitter:image:alt" content="<<blog_name>>">
     <link rel="canonical" href="<<blog_url>>">
-    <script src="/js/init.js?v=<<app_version>>"></script>
+
 
 
     <link rel="stylesheet" href="/css/layout.css?v=<<app_version>>" />
@@ -42,59 +42,7 @@
 </head>
 
 <body>
-    <div class="container">
-
-        <header class="site-header">
-            <div class="site-title"><a href="/">FatBlog</a></div>
-            <!-- <p class="site-description">
-                <<blog_description>>
-            </p> -->
-        </header>
-
-        <aside>
-            <h3>
-                <<person_name>>
-            </h3>
-            <ul>
-                <li><a target="_blank" href="https://www.linkedin.com/in/fat-han-nuraddin/">LinkedIn</a></li>
-                <li><a target="_blank" href="https://github.com/hanaddi">Github</a></li>
-                <li><a target="_blank" href="https://gitlab.com/hanaddi">Gitlab</a></li>
-            </ul>
-        </aside>
-
-
-        <main class="main">
-            <header class="post-title">
-                <h1><<post_title>></h1>
-                <div class="post-meta"> <time datetime="<<published_timestamp>>"><<published_formatted>></time> </div>
-            </header>
-            <br />
-            <article><<post_content>></article>
-        </main>
-
-        <footer class="site-footer">
-            <div>
-                <!-- © 2026 Minimal Blog • Built with plain HTML and CSS. -->
-            </div>
-        </footer>
-
-    </div>
-    <script>
-    window.MathJax = {
-    tex: {
-        inlineMath: [['\\(', '\\)'], ['$','$']],
-        displayMath: [['\\[','\\]'], ['$$','$$']]
-    },
-    options: {
-        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
-    }
-    };
-    </script>
-
-    <script async
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-    </script>
-    <script src="/js/theme.js?v=<<app_version>>"></script>
+    <<post_content>>
 </body>
 
 </html>

@@ -27,6 +27,40 @@
   }
 }
 
+:root.dark-theme {
+  /* Dark Mode (opt in) */
+  --bg-color: #1a2022;
+  --text-color: #eeeeee;
+  --border-color: #444444;
+  --accent-color: #58a6ff;
+  --mute-bg: #2d2d2d;
+  --mute-text: #aaaaaa;
+
+  --color-blue: #60A5FA;
+  --color-orange: #FDBA74;
+}
+
+:root.light-theme {
+  /* Light Mode (opt in) */
+  --bg-color: #ffffff;
+  --text-color: #222222;
+  --border-color: #dddddd;
+  --accent-color: #0066cc;
+  --mute-bg: #f6f8fa;
+  --mute-text: #555555;
+
+  --color-blue: #1D4ED8;
+  --color-orange: #C2410C;
+}
+
+/* Color transition */
+:root {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+body, body * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
 /* Application to Tags */
 body {
   background-color: var(--bg-color);
