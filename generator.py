@@ -229,6 +229,6 @@ for index_path in index_files:
     if folder:
         os.makedirs(folder, exist_ok=True)
     with open(index_posts, "w", encoding="utf-8") as file:
-        content_index_posts = content_index.replace("<<blog_url>>", blog_url + "/blog")
+        content_index_posts = content_index.replace("<<blog_url>>", blog_url + "/blog/")
         file.write(content_index_posts)
         print(f"Successfully created {str(index_posts)}")
