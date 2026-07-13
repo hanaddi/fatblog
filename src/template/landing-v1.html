@@ -21,9 +21,9 @@
     <link rel="canonical" href="https://fathannuraddin.satu.my.id">
     <script src="/js/init.js?v=1783911135"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@0,18..144,105.1,300..900;1,18..144,105.1,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/layout.css?v=1783911135" />
     <link rel="stylesheet" href="/css/colors.css?v=1783911135" />
@@ -120,6 +120,10 @@
                     <div>Fat Han </div>
                     <div>Nuraddin</div>
                 </h1>
+
+                <div class="sub-header">
+                    <div class="reveal-me fade-in">Backend Engineer at ░▒▓█████▓▒░</div>
+                </div>
             </div>
 
             <div class="photo-container">
@@ -127,50 +131,89 @@
             </div>
         </div>
 
-        <div style="width: 99%; pointer-events: none;">---</div>
+        <!-- <div style="width: 99%; pointer-events: none;">---</div> -->
 
-        <main class="main">
-aaa
-        </main>
+        <!-- <main class="main"> aaa </main> -->
 
         <script>
-        // Ambil semua elemen path
+        // SVG WRITING ANIMATION
         const paths = document.querySelectorAll('.text-path');
         let delay = 0, durationMul = 0;
 
         paths.forEach((path0) => {
             const length = path0.getTotalLength();
             const path1 = path0.cloneNode(true);
-            // path1.style.stroke = "#112233";
             path1.style.filter = "url(#filter2)";
             path0.parentNode.append(path1);
                 
             if (durationMul === 0) {
-                durationMul = length / 0.3;
+                durationMul = length / 0.2;
             }
             const duration = length / durationMul;
 
             for (const path of [path0, path1]) {
-                // Sembunyikan garis awal
                 path.style.strokeDasharray = length;
                 path.style.strokeDashoffset = length;
-    
-                // Picu reflow browser
                 path.getBoundingClientRect();
-    
-                // Tambahkan transisi CSS via JS
                 path.style.transition = `stroke-dashoffset ${duration}s linear`;
-    
-                // Berikan jeda transisi secara bertahap
                 path.style.transitionDelay = `${delay}s`;
-    
-                // Mulai animasi
                 path.style.strokeDashoffset = '0';
     
             }
             delay += Math.max(duration * 0.6, 0.1);
         });
 
+
+        // REVEAL ELEMENTS
+        const componentQueue = [];
+        let componentSetVisibleTimeout = null;
+        const componentSetVisibleWorker = () => {
+            if (!componentQueue || componentQueue.length === 0) {
+                componentSetVisibleTimeout = null;
+                return;
+            }
+            const element = componentQueue.shift();
+            if (element.dataset.delay) {
+                window.setTimeout(
+                    () => element.classList.add('visible'),
+                    Math.max(0, parseFloat(element.dataset.delay)) * 1000
+                );
+            } else {
+                element.classList.add('visible');
+            }
+
+            componentSetVisibleTimeout = window.setTimeout(componentSetVisibleWorker, componentQueue.length > 5 ? 50 : 200);
+        };
+
+        const componentSetVisible = (element) => {
+            if (!element || !element.classList) return;
+            componentQueue.push(element);
+            if (!componentSetVisibleTimeout) {
+                componentSetVisibleWorker();
+            }
+        };
+
+        let jsaFadeIn = [...document.querySelectorAll('.reveal-me')];
+
+        const handleScroll = (ev) => {
+            const parent = document.documentElement;
+            jsaFadeIn = jsaFadeIn.filter(el => {
+                const rectEl = el.getBoundingClientRect();
+                const isVisible = rectEl.top < (window.innerHeight || parent.clientHeight);
+
+                if (isVisible) {
+                    componentSetVisible(el);
+                    return false;
+                }
+                return true;
+            });
+            if (jsaFadeIn.length === 0) {
+                window.removeEventListener('scroll', handleScroll);
+            }
+        };
+
+        handleScroll({target: document.documentElement});
+        window.addEventListener('scroll', handleScroll);
     </script>
     </body>
 

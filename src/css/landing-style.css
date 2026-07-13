@@ -1,3 +1,7 @@
+* {
+    font-family: 'Merriweather', sans-serif;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: 1fr;
@@ -10,10 +14,17 @@
     order: 1;
 }
 
+.grid-container .hero-container .sub-header {
+    text-align: center;
+    margin-top: calc(max(1vw,10px) + 20px);
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
 .grid-container .hero.text {
     position: absolute;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     top: 0;
     left: 0;
 
@@ -53,7 +64,11 @@
     width: 95%;
     max-width: 200px;
     aspect-ratio: 1;
+    object-fit: cover;
     margin-top: 5px;
+    border: double 4px var(--text-color);
+    border-radius: 10%;
+    filter: saturate(0.75);
 }
 
 .text-path {
@@ -97,5 +112,30 @@
     }
     .grid-container .photo-container .photo {
         margin-left: 10px;
+    }
+
+    .grid-container .hero-container .sub-header {
+        text-align: right;
+    }
+
+}
+
+/* ANIM */
+.fade-in {
+    opacity: 0;
+    /* transition: opacity 0.8s ease-out; */
+    /* will-change: opacity; */
+}
+.visible.fade-in, .visible .fade-in {
+    opacity: 0;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: fade-in 1s linear 0s 1 normal both;
+}
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
     }
 }
