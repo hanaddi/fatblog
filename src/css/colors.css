@@ -1,56 +1,76 @@
 /* Color Palette Definitions */
 :root {
-  /* Light Mode */
-  --bg-color: #ffffff;
-  --text-color: #222222;
-  --border-color: #dddddd;
-  --accent-color: #0066cc;
-  --mute-bg: #f6f8fa;
-  --mute-text: #555555;
+  /* VARS */
+  --light-bg-color: #ffffff;
+  --light-text-color: #222222;
+  --light-border-color: #dddddd;
+  --light-accent-color: #0066cc;
+  --light-mute-bg: #f6f8fa;
+  --light-mute-text: #555555;
+  --light-color-blue: #1D4ED8;
+  --light-color-orange: #C2410C;
+  
+  --dark-bg-color: #1a2022;
+  --dark-text-color: #eeeeee;
+  --dark-border-color: #444444;
+  --dark-accent-color: #58a6ff;
+  --dark-mute-bg: #2d2d2d;
+  --dark-mute-text: #aaaaaa;
+  --dark-color-blue: #60A5FA;
+  --dark-color-orange: #FDBA74;
 
-  --color-blue: #1D4ED8;
-  --color-orange: #C2410C;
+
+  /* Light Mode */
+  --bg-color: var(--light-bg-color);
+  --text-color: var(--light-text-color);
+  --border-color: var(--light-border-color);
+  --accent-color: var(--light-accent-color);
+  --mute-bg: var(--light-mute-bg);
+  --mute-text: var(--light-mute-text);
+
+  --color-blue: var(--light-color-blue);
+  --color-orange: var(--light-color-orange);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Mode */
-    --bg-color: #1a2022;
-    --text-color: #eeeeee;
-    --border-color: #444444;
-    --accent-color: #58a6ff;
-    --mute-bg: #2d2d2d;
-    --mute-text: #aaaaaa;
+    --bg-color: var(--dark-bg-color);
+    --text-color: var(--dark-text-color);
+    --border-color: var(--dark-border-color);
+    --accent-color: var(--dark-accent-color);
+    --mute-bg: var(--dark-mute-bg);
+    --mute-text: var(--dark-mute-text);
 
-    --color-blue: #60A5FA;
-    --color-orange: #FDBA74;
+    --color-blue: var(--dark-color-blue);
+    --color-orange: var(--dark-color-orange);
   }
 }
 
 :root.dark-theme {
   /* Dark Mode (opt in) */
-  --bg-color: #1a2022;
-  --text-color: #eeeeee;
-  --border-color: #444444;
-  --accent-color: #58a6ff;
-  --mute-bg: #2d2d2d;
-  --mute-text: #aaaaaa;
+  --bg-color: var(--dark-bg-color);
+  --text-color: var(--dark-text-color);
+  --border-color: var(--dark-border-color);
+  --accent-color: var(--dark-accent-color);
+  --mute-bg: var(--dark-mute-bg);
+  --mute-text: var(--dark-mute-text);
 
-  --color-blue: #60A5FA;
-  --color-orange: #FDBA74;
+  --color-blue: var(--dark-color-blue);
+  --color-orange: var(--dark-color-orange);
 }
 
 :root.light-theme {
   /* Light Mode (opt in) */
-  --bg-color: #ffffff;
-  --text-color: #222222;
-  --border-color: #dddddd;
-  --accent-color: #0066cc;
-  --mute-bg: #f6f8fa;
-  --mute-text: #555555;
+  --bg-color: var(--light-bg-color);
+  --text-color: var(--light-text-color);
+  --border-color: var(--light-border-color);
+  --accent-color: var(--light-accent-color);
+  --mute-bg: var(--light-mute-bg);
+  --mute-text: var(--light-mute-text);
 
-  --color-blue: #1D4ED8;
-  --color-orange: #C2410C;
+  --color-blue: var(--light-color-blue);
+  --color-orange: var(--light-color-orange);
 }
 
 /* Color transition */

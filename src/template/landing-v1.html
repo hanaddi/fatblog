@@ -122,7 +122,18 @@
                 </h1>
 
                 <div class="sub-header">
-                    <div class="reveal-me fade-in">Backend Engineer at ░▒▓█████▓▒░</div>
+                    <div class="reveal-me fade-in">Backend Engineer at <label for="btn-tooltip-company" class="inline-loading"> ░░░░???░░░░ </label></div>
+                    <!-- <button id="btn-tooltip-company"></button> -->
+                    <input type="checkbox" id="btn-tooltip-company" autocomplete="off">
+                    <label for="btn-tooltip-company"></label>
+                    <div class="tooltip-company">
+                        <div style="background-color: var(--color-orange); color: var(--bg-color); max-width: 100%; width: 250px; text-align: center; padding: 15px 10px; border-radius: 10px; border: double 5px var(--bg-color); z-index: 2; box-shadow: 2px 2px 0px var(--text-color), -2px -2px 0px var(--text-color); font-size: 0.9rem;">
+                            <div style="font-size: 1.2rem; font-weight: bolder;"> 404 </div>
+                            <div style="font-size: 1rem; font-weight: bold; border-bottom: solid 1px var(--bg-color); padding-bottom: 3px; margin-bottom: 3px;"> Employer Not Found </div>
+                            <div>Available for hire:</div>
+                            <div style="background: var(--bg-color); padding: 4px; border-radius: 5px;"><a href="mailto:fat.han.nuraddin@gmail.com">fat.han.nuraddin@gmail.com</a></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -133,7 +144,13 @@
 
         <!-- <div style="width: 99%; pointer-events: none;">---</div> -->
 
-        <!-- <main class="main"> aaa </main> -->
+        <!-- <main class="main"> </main> -->
+         <div class="" style="flex-basis: 100%; text-align: center;">
+             <div class="summary reveal-me fade-in">Backend Engineer with over four years of experience developing robust backend services and RESTful APIs. Detail oriented and analytical, with a structured approach to problem-solving and system design. Seeking opportunities to contribute to reliable, scalable systems while continuing to strengthen technical and collaboration skills.</div>
+        </div>
+         <div style="flex-basis: 100%; max-width: 500px;">
+             <div>Backend Engineer with over four years of experience developing robust backend services and RESTful APIs. Detail oriented and analytical, with a structured approach to problem-solving and system design. Seeking opportunities to contribute to reliable, scalable systems while continuing to strengthen technical and collaboration skills.</div>
+        </div>
 
         <script>
         // SVG WRITING ANIMATION
@@ -182,7 +199,7 @@
                 element.classList.add('visible');
             }
 
-            componentSetVisibleTimeout = window.setTimeout(componentSetVisibleWorker, componentQueue.length > 5 ? 50 : 200);
+            componentSetVisibleTimeout = window.setTimeout(componentSetVisibleWorker, componentQueue.length > 5 ? 50 : 300);
         };
 
         const componentSetVisible = (element) => {
@@ -214,6 +231,30 @@
 
         handleScroll({target: document.documentElement});
         window.addEventListener('scroll', handleScroll);
+
+        try {
+            const container = document.querySelector(".container");
+            const btnContainer = document.createElement("div");
+            btnContainer.setAttribute("id", "btn-container-theme");
+            btnContainer.style.position = "absolute";
+            btnContainer.style.width = "50px";
+            btnContainer.style.cursor = "pointer";
+            btnContainer.style.overflow = "visible";
+            btnContainer.style.right = "10px";
+            btnContainer.style.top = "0";
+            btnContainer.onclick = toggleTheme;
+            container.appendChild(btnContainer);
+            
+            const style = document.createElement("style");
+            style.textContent = `
+                #btn-container-theme::before { content: "☀︎"; padding: 5px 10px; font-size: 1.2rem; background-color: var(--color-blue); border-radius: 3px; display: block; text-align: center; border: solid 1px var(--text-color); color: var(--dark-color-orange); }
+                .dark-theme #btn-container-theme::before { content: "☾"; background-color: var(--border-color); color: var(--text-color); }
+            `;
+            container.appendChild(style);
+        // ☀︎ ⏾
+        } catch (error) {
+            
+        }
     </script>
     </body>
 

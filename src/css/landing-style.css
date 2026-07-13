@@ -1,5 +1,24 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 * {
     font-family: 'Merriweather', sans-serif;
+}
+
+.inline-loading {
+    color: var(--bg-color);
+    background-color: var(--text-color);
+    cursor: help;
+    animation: inline-loading 1s linear infinite alternate;
+}
+@keyframes inline-loading {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .grid-container {
@@ -15,10 +34,25 @@
 }
 
 .grid-container .hero-container .sub-header {
+    position: relative;
     text-align: center;
     margin-top: calc(max(1vw,10px) + 20px);
     margin-right: 10px;
     font-size: 1.2rem;
+}
+
+.grid-container .hero-container .sub-header .tooltip-company {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+
+    visibility: hidden;
+    opacity: 0;
+}
+.grid-container .hero-container .sub-header .tooltip-company * {
+    font-family: sans-serif;
 }
 
 .grid-container .hero.text {
@@ -73,7 +107,9 @@
 
 .text-path {
     fill: none;
-    stroke: var(--text-color);
+    /* stroke: var(--text-color); */
+    stroke: var(--color-blue);
+    /* stroke: var(--color-orange); */
     stroke-width: 1;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -117,7 +153,42 @@
     .grid-container .hero-container .sub-header {
         text-align: right;
     }
+    .grid-container .hero-container .sub-header .tooltip-company {
+        justify-content: flex-end;
+    }
 
+}
+
+.summary {
+    max-width: 700px;
+    margin: 50px auto;
+    line-height: 1.5;
+    letter-spacing: 0.2ch;
+}
+
+#btn-tooltip-company {
+    position: absolute; transform: scale(0);
+}
+/* #btn-tooltip-company:focus + .tooltip-company, */
+#btn-tooltip-company:checked ~ .tooltip-company
+/* .tooltip-company:focus-within, */
+{
+    visibility: visible;
+    opacity: 1;
+}
+#btn-tooltip-company ~ label[for="btn-tooltip-company"] {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: var(--text-color);
+    opacity: 0.4;
+    visibility: hidden;
+}
+#btn-tooltip-company:checked ~ label[for="btn-tooltip-company"] {
+    visibility: visible;
 }
 
 /* ANIM */
