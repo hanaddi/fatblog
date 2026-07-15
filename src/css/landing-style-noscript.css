@@ -1,0 +1,18 @@
+.container {
+    margin-top: 0px;
+}
+
+.noscript {
+    background-color: var(--light-color-orange);
+    color: var(--dark-text-color);
+    padding: 15px;
+    flex-basis: 100%;
+}
+
+/* ANIM */
+.fade-in {
+    opacity: 1;
+}
+.fade-in-up {
+    opacity: 1;
+}

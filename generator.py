@@ -14,12 +14,16 @@ GSHEET_TAB = os.environ['GSHEET_TAB']
 SERVICE_ACCOUNT = os.environ['SERVICE_ACCOUNT']
 INDEX_PATH = Path("src/template/index-v1.html")
 POST_PATH = Path("src/template/post-v1.html")
+LANDING_PATH = Path("src/template/landing-v1.html")
 
 
 # Prepare output folder
 dist = Path("dist")
 shutil.rmtree(dist, ignore_errors=True)
 dist.mkdir(parents=True, exist_ok=True)
+
+# Copy landing page
+shutil.copyfile(LANDING_PATH, dist / "index.html")
 
 # Copy css, img, js
 for d in ["css", "img", "js"]:
@@ -173,7 +177,7 @@ for row in data:
     description = row.get('contentraw', '')[:200] + "..."
     description = " ".join(description.split())
     post_title = row.get('title', '')
-    title = post_title + " | Fat Han Nuraddin"
+    title = post_title + " | " + blog_name
     url = blog_url + "/" + row.get('path', '')
     img = row.get('og_image', blog_img_default)
 
@@ -215,11 +219,11 @@ content_index = content_index.replace("<<blog_description>>", blog_description)
 content_index = content_index.replace("<<blog_name>>", blog_name)
 content_index = content_index.replace("<<blog_img_default>>", blog_img_default)
 
-with open(dist / "index.html", "w", encoding="utf-8") as file:
-    # TODO: Prettify the landing page
-    content_index_landing = content_index.replace("<<blog_url>>", blog_url)
-    file.write(content_index_landing)
-    print(f"Successfully created index")
+# with open(dist / "index.html", "w", encoding="utf-8") as file:
+#     # TODO: Prettify the landing page
+#     content_index_landing = content_index.replace("<<blog_url>>", blog_url)
+#     file.write(content_index_landing)
+#     print(f"Successfully created index")
 
 # Index for posts
 index_files = ["posts/index.html", "blog/index.html"]
@@ -229,6 +233,6 @@ for index_path in index_files:
     if folder:
         os.makedirs(folder, exist_ok=True)
     with open(index_posts, "w", encoding="utf-8") as file:
-        content_index_posts = content_index.replace("<<blog_url>>", blog_url + "/blog")
+        content_index_posts = content_index.replace("<<blog_url>>", blog_url + "/blog/")
         file.write(content_index_posts)
         print(f"Successfully created {str(index_posts)}")

@@ -21,6 +21,9 @@
     <link rel="canonical" href="<<blog_url>>">
     <script src="/js/init.js?v=<<app_version>>"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/layout.css?v=<<app_version>>" />
     <link rel="stylesheet" href="/css/colors.css?v=<<app_version>>" />
@@ -44,7 +47,7 @@
 
         <header class="site-header">
             <h1 class="site-title"><a id="a-home" href="/">FatBlog</a></h1>
-            <script>if (location.pathname === "/"){document.getElementById("a-home").onclick = ev => ev.preventDefault()}</script>
+            <script>if (location.pathname === "/blog/"){document.getElementById("a-home").onclick = ev => ev.preventDefault()}</script>
             <p class="site-description">
                 <<blog_description>>
             </p>
