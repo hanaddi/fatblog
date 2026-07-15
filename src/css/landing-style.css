@@ -159,11 +159,25 @@
 
 }
 
+.section {
+    flex-basis: 100%;
+}
+
 .summary {
     max-width: 700px;
-    margin: 50px auto;
+    margin: 10px auto;
     line-height: 1.5;
     letter-spacing: 0.2ch;
+}
+
+.spacer {
+    pointer-events: none;
+    margin: 20px auto;
+}
+.spacer::after {
+    content: "─   ─  ── ── ⋆⋅𖤓⋅⋆ ── ──  ─   ─";
+    pointer-events: none;
+    color: var(--color-orange);
 }
 
 #btn-tooltip-company {
@@ -191,6 +205,50 @@
     visibility: visible;
 }
 
+.porto-links {
+    flex-grow: 1;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.porto-link {
+    flex-basis: 150px;
+    flex-grow: 0;
+    flex-shrink: 1;
+    text-align: center;
+    vertical-align: middle;
+    max-width: 200px;
+    margin: 5px;
+    padding: 10px;
+    /* border: solid 2px var(--border-color); */
+    border-radius: 10px;
+    background-color: var(--border-color);
+}
+
+.porto-link:hover {
+    --text-color: var(--color-blue);
+}
+
+.porto-link a {
+    text-decoration: none;
+}
+
+.porto-link a * {
+    font-family: sans-serif;
+    color: var(--text-color);
+}
+
+.porto-link svg.icon {
+    height: 30px;
+    width: auto;
+}
+.porto-link svg.icon path {
+    fill: var(--text-color);
+}
+
 /* ANIM */
 .fade-in {
     opacity: 0;
@@ -200,7 +258,7 @@
 .visible.fade-in, .visible .fade-in {
     opacity: 0;
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
-    animation: fade-in 1s linear 0s 1 normal both;
+    animation: fade-in 1.5s linear 0s 1 normal both;
 }
 @keyframes fade-in {
     0% {
@@ -208,5 +266,23 @@
     }
     100% {
         opacity: 1;
+    }
+}
+
+.fade-in-up {
+    opacity: 0;
+}
+.visible.fade-in-up, .visible .fade-in-up {
+    opacity: 0;
+    animation: fade-in-up 1s linear 0s 1 normal both;
+}
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

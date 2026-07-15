@@ -21,25 +21,26 @@
     <link rel="canonical" href="https://fathannuraddin.satu.my.id">
     <script src="/js/init.js?v=1783911135"></script>
 
-    <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
-    <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wdth,wght@0,18..144,105.1,300..900;1,18..144,105.1,300..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/layout.css?v=1783911135" />
     <link rel="stylesheet" href="/css/colors.css?v=1783911135" />
     <link rel="stylesheet" href="/css/style.css?v=1783911135" />
     <link rel="stylesheet" href="/css/landing-style.css?v=1783911135" />
+    <noscript>
+        <link rel="stylesheet" href="/css/landing-style-noscript.css?v=1783911135" />
+    </noscript>
 
-    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet"
-        media="(prefers-color-scheme: light)" />
-    <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet"
-        media="(prefers-color-scheme: dark)" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism.css" rel="stylesheet" media="(prefers-color-scheme: light)" /> -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.css" rel="stylesheet" media="(prefers-color-scheme: dark)" /> -->
 
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-markup.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script> -->
 
     <style>
     </style>
@@ -48,6 +49,9 @@
 
 <body>
     <div class="container">
+        <noscript class="noscript">
+            Looks like JavaScript is turned off in your browser. No worries, just giving you a heads-up.
+        </noscript>
 
         <div class="grid-container">
 
@@ -122,7 +126,7 @@
                 </h1>
 
                 <div class="sub-header">
-                    <div class="reveal-me fade-in">Backend Engineer at <label for="btn-tooltip-company" class="inline-loading"> ░░░░???░░░░ </label></div>
+                    <div class="reveal-me fade-in">Backend Engineer at <label for="btn-tooltip-company" class="inline-loading"> ░░░░🔍︎░░░░ </label></div>
                     <!-- <button id="btn-tooltip-company"></button> -->
                     <input type="checkbox" id="btn-tooltip-company" autocomplete="off">
                     <label for="btn-tooltip-company"></label>
@@ -145,12 +149,55 @@
         <!-- <div style="width: 99%; pointer-events: none;">---</div> -->
 
         <!-- <main class="main"> </main> -->
-         <div class="" style="flex-basis: 100%; text-align: center;">
+        <div class="section" style="text-align: center;">
+            <div class="spacer"></div>
              <div class="summary reveal-me fade-in">Backend Engineer with over four years of experience developing robust backend services and RESTful APIs. Detail oriented and analytical, with a structured approach to problem-solving and system design. Seeking opportunities to contribute to reliable, scalable systems while continuing to strengthen technical and collaboration skills.</div>
+            <div class="spacer"></div>
         </div>
-         <div style="flex-basis: 100%; max-width: 500px;">
+
+         <div class="section porto-links">
+            <div class="porto-link reveal-me fade-in-up">
+                <a target="_blank" href="https://www.linkedin.com/in/fat-han-nuraddin/">
+                    <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
+                    </svg>
+                    <div>LinkedIn</div>
+                </a>
+            </div>
+            <div class="porto-link reveal-me fade-in-up">
+                <a target="_blank" href="https://github.com/hanaddi">
+                    <svg class="icon" viewBox="0 0 24 24" width="32" height="32">
+                        <path
+                            d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943">
+                        </path>
+                    </svg>
+                    <div>Github</div>
+                </a>
+            </div>
+            <div class="porto-link reveal-me fade-in-up">
+                <a target="_blank" href="https://gitlab.com/hanaddi">
+                    <svg class="icon" viewBox="0 40 380 260" width="380" height="260">
+                        <path d="M282.83,170.73l-.27-.69-26.14-68.22a6.81,6.81,0,0,0-2.69-3.24,7,7,0,0,0-8,.43,7,7,0,0,0-2.32,3.52l-17.65,54H154.29l-17.65-54A6.86,6.86,0,0,0,134.32,99a7,7,0,0,0-8-.43,6.87,6.87,0,0,0-2.69,3.24L97.44,170l-.26.69a48.54,48.54,0,0,0,16.1,56.1l.09.07.24.17,39.82,29.82,19.7,14.91,12,9.06a8.07,8.07,0,0,0,9.76,0l12-9.06,19.7-14.91,40.06-30,.1-.08A48.56,48.56,0,0,0,282.83,170.73Z"></path>
+                    </svg>
+                    <div>Gitlab</div>
+                </a>
+            </div>
+            <div class="porto-link reveal-me fade-in-up">
+                <a target="_blank" href="/blog/">
+                    <svg class="icon" viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M 18,2 L 22,6 L 6,22 L 2,22 L 2,18 Z"></path>
+                    </svg>
+                    <div>Blog</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- <div class="section" style="max-width: 600px; flex-grow: 0;">
              <div>Backend Engineer with over four years of experience developing robust backend services and RESTful APIs. Detail oriented and analytical, with a structured approach to problem-solving and system design. Seeking opportunities to contribute to reliable, scalable systems while continuing to strengthen technical and collaboration skills.</div>
         </div>
+         <div class="section" style="flex-basis: 200px; flex-grow: 1; flex-shrink: 0;">
+             <div>Backend Engineer with over four years of experience developing robust backend services and RESTful APIs. Detail oriented and analytical, with a structured approach to problem-solving and system design. Seeking opportunities to contribute to reliable, scalable systems while continuing to strengthen technical and collaboration skills.</div>
+        </div> -->
 
         <script>
         // SVG WRITING ANIMATION
